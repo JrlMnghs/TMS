@@ -1,0 +1,288 @@
+{
+  "info": {
+    "_postman_id": "c6d8c9a0-1c3e-4d61-b1ed-6b7655e2b2b2",
+    "name": "Translation Management Service API v1",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": "Postman collection for Translation Management Service API v1. Use the 'Login' request to obtain a token, which is saved to the collection variable 'token'. All protected endpoints use Bearer {{token}}. Configure {{baseUrl}} to your API host (e.g., http://localhost or http://localhost:8080). This collection uses the v1 API endpoints (/api/v1/)."
+  },
+  "item": [
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "Login",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/login",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "login"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"test@example.com\",\n  \"password\": \"password\",\n  \"device\": \"postman\"\n}"
+            }
+          },
+          "response": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "let json;",
+                  "try { json = pm.response.json(); } catch (e) { json = null; }",
+                  "if (json && json.token) {",
+                  "  pm.collectionVariables.set('token', json.token);",
+                  "  pm.test('Saved token to collection', function () { pm.expect(!!json.token).to.be.true; });",
+                  "} else {",
+                  "  pm.test('Token not present in response', function () { pm.expect(false, 'No token in response').to.be.true; });",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ]
+        },
+        {
+          "name": "Logout",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/logout",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "logout"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Users",
+      "item": [
+        {
+          "name": "List Users",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/users?per_page=20",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "users"],
+              "query": [
+                { "key": "per_page", "value": "20" }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get User by ID",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/users/{{userId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "users", "{{userId}}"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Translations",
+      "item": [
+        {
+          "name": "List Translations",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/translations?tags=auth&locale=en&key=auth.&q=Log&per_page=20",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "translations"],
+              "query": [
+                { "key": "tags", "value": "auth" },
+                { "key": "locale", "value": "en" },
+                { "key": "key", "value": "auth." },
+                { "key": "q", "value": "Log" },
+                { "key": "per_page", "value": "20" }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Search Translations (by tag/key/q)",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/translations?tags={{searchTags}}&key={{searchKey}}&q={{searchText}}&locale={{locale}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "translations"],
+              "query": [
+                { "key": "tags", "value": "{{searchTags}}" },
+                { "key": "locale", "value": "{{locale}}" },
+                { "key": "key", "value": "{{searchKey}}" },
+                { "key": "q", "value": "{{searchText}}" }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create Translation",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/translations",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "translations"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"key_name\": \"auth.login.title\",\n  \"tags\": [\"auth\", \"web\"],\n  \"values\": {\n    \"en\": \"Login\",\n    \"fr\": \"Connexion\"\n  }\n}"
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Translation by ID",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/translations/{{translationId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "translations", "{{translationId}}"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update Translation",
+          "request": {
+            "method": "PUT",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/translations/{{translationId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "translations", "{{translationId}}"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"key_name\": \"auth.login.title\",\n  \"tags\": [\"auth\"],\n  \"values\": {\n    \"en\": \"Log in\"\n  }\n}"
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Translation",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/translations/{{translationId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "translations", "{{translationId}}"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Export",
+      "item": [
+        {
+          "name": "Export by Locale",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/export/{{locale}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "export", "{{locale}}"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Export by Locale with Tags",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/export/{{locale}}?tags=auth,web",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "export", "{{locale}}"],
+              "query": [
+                { "key": "tags", "value": "auth,web" }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Stream Export by Locale",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/export/{{locale}}/stream",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "export", "{{locale}}", "stream"]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ],
+  "variable": [
+    { "key": "baseUrl", "value": "http://localhost:8080" },
+    { "key": "token", "value": "" },
+    { "key": "userId", "value": "1" },
+    { "key": "translationId", "value": "1" },
+    { "key": "locale", "value": "en" },
+    { "key": "searchTags", "value": "auth" },
+    { "key": "searchKey", "value": "auth." },
+    { "key": "searchText", "value": "Log" }
+  ]
+}
+
+

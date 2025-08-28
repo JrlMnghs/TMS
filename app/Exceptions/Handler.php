@@ -4,6 +4,7 @@ namespace App\Exceptions;
 
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Validation\ValidationException;
+use Illuminate\Auth\AuthenticationException;
 use Throwable;
 
 class Handler extends ExceptionHandler
@@ -35,6 +36,16 @@ class Handler extends ExceptionHandler
                     'message' => 'Validation failed',
                     'errors' => $exception->errors(),
                 ], 422);
+            }
+        });
+
+        $this->renderable(function (AuthenticationException $exception, $request) {
+            if ($request->is('api/*') || $request->expectsJson()) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Unauthenticated',
+                    'error' => 'Authentication required',
+                ], 401);
             }
         });
     }

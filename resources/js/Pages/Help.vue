@@ -15,17 +15,17 @@
       <h2 class="text-xl font-semibold mb-2">Getting Started</h2>
       <ol class="list-decimal list-inside space-y-1 text-gray-700">
         <li>Clone the repository and start Docker: <code>docker compose up -d</code></li>
-        <li>Install dependencies: <code>docker exec -it translation-management-service-web-1 composer install</code></li>
-        <li>Generate key: <code>docker exec -it translation-management-service-web-1 php artisan key:generate</code></li>
-        <li>Migrate DB: <code>docker exec -it translation-management-service-web-1 php artisan migrate:fresh</code></li>
-        <li>Seed base data: <code>docker exec -it translation-management-service-web-1 php artisan db:seed</code></li>
+        <li>Install dependencies: <code>docker exec -it {container} composer install</code></li>
+        <li>Generate key: <code>docker exec -it {container} php artisan key:generate</code></li>
+        <li>Migrate DB: <code>docker exec -it {container} php artisan migrate:fresh</code></li>
+        <li>Seed base data: <code>docker exec -it {container} php artisan db:seed</code></li>
       </ol>
     </section>
 
     <section class="mb-8">
       <h2 class="text-xl font-semibold mb-2">Large Dataset (Optional)</h2>
       <p class="text-gray-700 mb-2">Seed 200k translations for performance testing:</p>
-      <pre class="bg-gray-100 rounded p-3 overflow-x-auto"><code>docker exec -it translation-management-service-web-1 php artisan migrate:fresh --seed --seeder=Database\\Seeders\\MemoryEfficientSeeder</code></pre>
+      <pre class="bg-gray-100 rounded p-3 overflow-x-auto"><code>docker exec -it {container} php artisan migrate:fresh --seed --seeder=Database\\Seeders\\MemoryEfficientSeeder</code></pre>
     </section>
 
     <section class="mb-8">
@@ -33,7 +33,7 @@
       <p class="text-gray-700 mb-2">Default user after seeding:</p>
       <ul class="list-disc list-inside text-gray-700">
         <li>Email: <code>test@example.com</code></li>
-        <li>Password: <code>password</code></li>
+        <li>Password: <code>********</code></li>
       </ul>
     </section>
 
@@ -50,6 +50,19 @@
     </section>
 
     <section class="mb-8">
+      <h2 class="text-xl font-semibold mb-2">Rate Limiting</h2>
+      <p class="text-gray-700 mb-2">All API endpoints are rate-limited for security:</p>
+      <ul class="list-disc list-inside space-y-1 text-gray-700">
+        <li><strong>Login:</strong> 5 attempts per minute</li>
+        <li><strong>Export:</strong> 30 requests per hour</li>
+        <li><strong>Translations CRUD:</strong> 100 requests per hour</li>
+        <li><strong>Users:</strong> 50 requests per hour</li>
+        <li><strong>Default:</strong> 60 requests per hour</li>
+      </ul>
+      <p class="text-gray-700 mt-2">Rate limit headers are included in responses: <code>X-RateLimit-Limit</code>, <code>X-RateLimit-Remaining</code></p>
+    </section>
+
+    <section class="mb-8">
       <h2 class="text-xl font-semibold mb-2">Best Practices</h2>
       <ul class="list-disc list-inside space-y-1 text-gray-700">
         <li>Follow PSR-12 and SOLID in contributions</li>
@@ -63,7 +76,7 @@
     <section>
       <h2 class="text-xl font-semibold mb-2">Useful Commands</h2>
       <pre class="bg-gray-100 rounded p-3 overflow-x-auto"><code># Shell into container
-docker exec -it translation-management-service-web-1 bash
+docker exec -it {container} bash
 
 # Refresh DB and seed base
 php artisan migrate:fresh --seed

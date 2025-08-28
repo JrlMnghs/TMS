@@ -3,16 +3,21 @@
 namespace App\Exceptions;
 
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
-use Illuminate\Validation\ValidationException;
 use Illuminate\Auth\AuthenticationException;
+use Illuminate\Auth\Access\AuthorizationException;
+use Illuminate\Validation\ValidationException;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Routing\Exceptions\RouteNotFoundException;
+use Symfony\Component\HttpKernel\Exception\HttpExceptionInterface;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
+use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 use Throwable;
 
 class Handler extends ExceptionHandler
 {
     /**
-     * The list of the inputs that are never flashed to the session on validation exceptions.
-     *
-     * @var array<int, string>
+     * Inputs never flashed to session on validation errors.
      */
     protected $dontFlash = [
         'current_password',
@@ -21,32 +26,88 @@ class Handler extends ExceptionHandler
     ];
 
     /**
-     * Register the exception handling callbacks for the application.
+     * Register callbacks for exception handling.
      */
     public function register(): void
     {
         $this->reportable(function (Throwable $e) {
-            //
+            // Already logged by Laravel; you may push to external log services here (e.g., Sentry, Bugsnag).
         });
 
-        $this->renderable(function (ValidationException $exception, $request) {
+        $this->renderable(function (Throwable $e, $request) {
             if ($request->is('api/*') || $request->expectsJson()) {
-                return response()->json([
-                    'success' => false,
-                    'message' => 'Validation failed',
-                    'errors' => $exception->errors(),
-                ], 422);
+                return $this->handleApiException($e, $request);
             }
         });
+    }
 
-        $this->renderable(function (AuthenticationException $exception, $request) {
-            if ($request->is('api/*') || $request->expectsJson()) {
-                return response()->json([
-                    'success' => false,
-                    'message' => 'Unauthenticated',
-                    'error' => 'Authentication required',
-                ], 401);
-            }
-        });
+    /**
+     * Central API exception handler.
+     */
+    protected function handleApiException(Throwable $e, $request)
+    {
+        $status = 500;
+        $error = 'Server Error';
+        $details = null;
+
+        switch (true) {
+            case $e instanceof ValidationException:
+                $status = 422;
+                $error = 'Validation Error';
+                $details = $e->errors();
+                break;
+
+            case $e instanceof AuthenticationException:
+                $status = 401;
+                $error = 'Unauthenticated';
+                break;
+
+            case $e instanceof AuthorizationException:
+            case $e instanceof AccessDeniedHttpException:
+                $status = 403;
+                $error = 'Forbidden';
+                break;
+
+            case $e instanceof ModelNotFoundException:
+                $status = 404;
+                $error = 'Resource Not Found';
+                break;
+
+            case $e instanceof NotFoundHttpException:
+            case $e instanceof RouteNotFoundException:
+                $status = 404;
+                $error = 'Endpoint Not Found';
+                break;
+
+            case $e instanceof MethodNotAllowedHttpException:
+                $status = 405;
+                $error = 'Method Not Allowed';
+                break;
+
+            case $e instanceof HttpExceptionInterface:
+                $status = $e->getStatusCode();
+                $error = $e->getMessage() ?: 'HTTP Error';
+                break;
+        }
+
+        // Logging (redact sensitive info in production)
+        if (app()->environment('local', 'staging')) {
+            \Log::error('API Exception', [
+                'url' => $request->fullUrl(),
+                'method' => $request->method(),
+                'status' => $status,
+                'error' => $e->getMessage(),
+                'trace' => $e->getTraceAsString(),
+            ]);
+        }
+
+        return response()->json([
+            'success' => false,
+            'error' => [
+                'type' => class_basename($e),
+                'message' => $error,
+                'details' => $details,
+            ],
+        ], $status);
     }
 }

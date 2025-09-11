@@ -1,0 +1,10 @@
+{
+    "sections": [
+      {
+        "name": "Profile",
+        "path": "profile",
+        "component": "ProfileSection",
+        "pageTitle": "Jarrel Mangahas | Software Engineer II"
+      }
+    ]
+  }

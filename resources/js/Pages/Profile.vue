@@ -24,7 +24,7 @@ const personalInfo = {
   title: 'Software Engineer II',
   location: 'San Jose City, Nueva Ecija',
   email: 'jarrelmangahas12@gmail.com',
-  phone: '+6392109018050',
+  phone: '+6392109001800',
   linkedin: 'https://www.linkedin.com/in/jarrel-mangahas-294174171/',
   website: 'jrlmnghs.online'
 };
@@ -34,7 +34,7 @@ const experience = [
   {
     company: 'YNS Philippines',
     position: 'Software Engineer II',
-    period: 'Jul 2019 - Sept 2025',
+    period: 'Jul 2019 - Aug 2025',
     location: 'Makati City, Philippines',
     achievements: [
       'Led development of multiple enterprise-level applications including banking software, job portals, online booking, and mobile apps',
@@ -138,58 +138,57 @@ onMounted(() => {
 });
 </script>
 
-
 <template>
   <Head title="Jarrel Mangahas | Software Engineer" />
   <div class="min-h-screen" :style="{ backgroundColor: theme.background, color: theme.text }">
     <!-- IDE Header Bar -->
-    <div class="flex items-center justify-between px-4 py-2 border-b" :style="{ borderColor: theme.border, backgroundColor: theme.surface }">
-      <div class="flex items-center space-x-2">
+    <div class="flex items-center justify-between px-2 sm:px-4 py-2 border-b" :style="{ borderColor: theme.border, backgroundColor: theme.surface }">
+      <div class="flex items-center space-x-1 sm:space-x-2">
         <div class="flex space-x-1">
-          <div class="w-3 h-3 rounded-full" :style="{ backgroundColor: theme.error }"></div>
-          <div class="w-3 h-3 rounded-full" :style="{ backgroundColor: theme.warning }"></div>
-          <div class="w-3 h-3 rounded-full" :style="{ backgroundColor: theme.success }"></div>
+          <div class="w-2 h-2 sm:w-3 sm:h-3 rounded-full" :style="{ backgroundColor: theme.error }"></div>
+          <div class="w-2 h-2 sm:w-3 sm:h-3 rounded-full" :style="{ backgroundColor: theme.warning }"></div>
+          <div class="w-2 h-2 sm:w-3 sm:h-3 rounded-full" :style="{ backgroundColor: theme.success }"></div>
         </div>
-        <span class="text-sm font-mono ml-4" :style="{ color: theme.textSecondary }">jarrel-mangahas.dev</span>
+        <span class="text-xs sm:text-sm font-mono ml-2 sm:ml-4 hidden sm:block" :style="{ color: theme.textSecondary }">jarrel-mangahas.dev</span>
       </div>
-      <div class="flex items-center space-x-4">
-        <span class="text-xs font-mono" :style="{ color: theme.textSecondary }">Software Engineer II</span>
+      <div class="flex items-center space-x-2 sm:space-x-4">
+        <span class="text-xs font-mono hidden sm:block" :style="{ color: theme.textSecondary }">Software Engineer II</span>
         <div class="w-2 h-2 rounded-full" :style="{ backgroundColor: theme.success }"></div>
       </div>
     </div>
 
     <!-- Main Content -->
-    <div class="flex">
+    <div class="flex flex-col lg:flex-row">
       <!-- Sidebar -->
-      <div class="w-64 border-r min-h-screen" :style="{ borderColor: theme.border, backgroundColor: theme.surface }">
-        <div class="p-4">
-          <h3 class="text-sm font-semibold mb-4" :style="{ color: theme.text }">EXPLORER</h3>
+      <div class="w-full lg:w-64 border-b lg:border-b-0 lg:border-r min-h-auto lg:min-h-screen" :style="{ borderColor: theme.border, backgroundColor: theme.surface }">
+        <div class="p-2 sm:p-4">
+          <h3 class="text-xs sm:text-sm font-semibold mb-2 sm:mb-4" :style="{ color: theme.text }">EXPLORER</h3>
           <div class="space-y-1">
             <div class="flex items-center space-x-2 py-1 px-2 rounded cursor-pointer hover:bg-opacity-20" 
                  :style="{ backgroundColor: theme.accent + '20' }">
               <span class="text-xs">📁</span>
-              <span class="text-sm font-mono">jarrel-mangahas</span>
+              <span class="text-xs sm:text-sm font-mono">jarrel-mangahas</span>
             </div>
-            <div class="ml-4 space-y-1">
+            <div class="ml-2 sm:ml-4 space-y-1">
               <div class="flex items-center space-x-2 py-1 px-2 rounded cursor-pointer hover:bg-opacity-20" 
                    :style="{ backgroundColor: theme.accent + '20' }">
                 <span class="text-xs">📄</span>
-                <span class="text-sm font-mono">experience.js</span>
+                <span class="text-xs sm:text-sm font-mono">experience.js</span>
               </div>
               <div class="flex items-center space-x-2 py-1 px-2 rounded cursor-pointer hover:bg-opacity-20" 
                    :style="{ backgroundColor: theme.accent + '20' }">
                 <span class="text-xs">📄</span>
-                <span class="text-sm font-mono">skills.json</span>
+                <span class="text-xs sm:text-sm font-mono">skills.json</span>
               </div>
               <div class="flex items-center space-x-2 py-1 px-2 rounded cursor-pointer hover:bg-opacity-20" 
                    :style="{ backgroundColor: theme.accent + '20' }">
                 <span class="text-xs">📄</span>
-                <span class="text-sm font-mono">education.md</span>
+                <span class="text-xs sm:text-sm font-mono">education.md</span>
               </div>
               <div class="flex items-center space-x-2 py-1 px-2 rounded cursor-pointer hover:bg-opacity-20" 
                    :style="{ backgroundColor: theme.accent + '20' }">
                 <span class="text-xs">📄</span>
-                <span class="text-sm font-mono">contact.sh</span>
+                <span class="text-xs sm:text-sm font-mono">contact.sh</span>
               </div>
             </div>
           </div>
@@ -200,81 +199,81 @@ onMounted(() => {
       <div class="flex-1">
         <!-- Terminal Section -->
         <div class="border-b" :style="{ borderColor: theme.border }">
-          <div class="flex items-center px-4 py-2" :style="{ backgroundColor: theme.surface }">
-            <span class="text-sm font-mono" :style="{ color: theme.textSecondary }">TERMINAL</span>
+          <div class="flex items-center px-2 sm:px-4 py-2" :style="{ backgroundColor: theme.surface }">
+            <span class="text-xs sm:text-sm font-mono" :style="{ color: theme.textSecondary }">TERMINAL</span>
           </div>
-          <div class="p-4 font-mono text-sm" :style="{ backgroundColor: theme.background }">
-            <pre class="whitespace-pre-wrap" :style="{ color: theme.text }">{{ terminalText }}</pre>
+          <div class="p-2 sm:p-4 font-mono text-xs sm:text-sm" :style="{ backgroundColor: theme.background }">
+            <pre class="whitespace-pre-wrap overflow-x-auto" :style="{ color: theme.text }">{{ terminalText }}</pre>
             <span v-if="isTyping" class="inline-block w-2 h-4 ml-1 animate-pulse" :style="{ backgroundColor: theme.accent }"></span>
           </div>
         </div>
 
         <!-- Content Tabs -->
-        <div class="flex border-b" :style="{ borderColor: theme.border }">
-          <div class="px-4 py-2 border-r cursor-pointer" :style="{ borderColor: theme.border, backgroundColor: theme.surface }">
-            <span class="text-sm font-mono" :style="{ color: theme.text }">experience.js</span>
+        <div class="flex border-b overflow-x-auto" :style="{ borderColor: theme.border }">
+          <div class="px-2 sm:px-4 py-2 border-r cursor-pointer flex-shrink-0" :style="{ borderColor: theme.border, backgroundColor: theme.surface }">
+            <span class="text-xs sm:text-sm font-mono" :style="{ color: theme.text }">experience.js</span>
           </div>
-          <div class="px-4 py-2 border-r cursor-pointer" :style="{ borderColor: theme.border }">
-            <span class="text-sm font-mono" :style="{ color: theme.textSecondary }">skills.json</span>
+          <div class="px-2 sm:px-4 py-2 border-r cursor-pointer flex-shrink-0" :style="{ borderColor: theme.border }">
+            <span class="text-xs sm:text-sm font-mono" :style="{ color: theme.textSecondary }">skills.json</span>
           </div>
-          <div class="px-4 py-2 border-r cursor-pointer" :style="{ borderColor: theme.border }">
-            <span class="text-sm font-mono" :style="{ color: theme.textSecondary }">education.md</span>
+          <div class="px-2 sm:px-4 py-2 border-r cursor-pointer flex-shrink-0" :style="{ borderColor: theme.border }">
+            <span class="text-xs sm:text-sm font-mono" :style="{ color: theme.textSecondary }">education.md</span>
           </div>
-          <div class="px-4 py-2 cursor-pointer" :style="{ borderColor: theme.border }">
-            <span class="text-sm font-mono" :style="{ color: theme.textSecondary }">contact.sh</span>
+          <div class="px-2 sm:px-4 py-2 cursor-pointer flex-shrink-0" :style="{ borderColor: theme.border }">
+            <span class="text-xs sm:text-sm font-mono" :style="{ color: theme.textSecondary }">contact.sh</span>
           </div>
         </div>
 
         <!-- Experience Section -->
-        <div class="p-6">
+        <div class="p-3 sm:p-6">
           <div class="max-w-4xl">
             <!-- Personal Info Header -->
-            <div class="mb-8 p-6 rounded-lg border" :style="{ backgroundColor: theme.surface, borderColor: theme.border }">
-              <h1 class="text-3xl font-bold mb-2" :style="{ color: theme.text }">{{ personalInfo.name }}</h1>
-              <h2 class="text-xl mb-4" :style="{ color: theme.accent }">{{ personalInfo.title }}</h2>
-              <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm" :style="{ color: theme.textSecondary }">
+            <div class="mb-6 sm:mb-8 p-4 sm:p-6 rounded-lg border" :style="{ backgroundColor: theme.surface, borderColor: theme.border }">
+              <h1 class="text-2xl sm:text-3xl font-bold mb-2" :style="{ color: theme.text }">{{ personalInfo.name }}</h1>
+              <h2 class="text-lg sm:text-xl mb-4" :style="{ color: theme.accent }">{{ personalInfo.title }}</h2>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 text-xs sm:text-sm" :style="{ color: theme.textSecondary }">
                 <div class="flex items-center space-x-2">
                   <span>📍</span>
-                  <span>{{ personalInfo.location }}</span>
+                  <span class="truncate">{{ personalInfo.location }}</span>
                 </div>
                 <div class="flex items-center space-x-2">
                   <span>📧</span>
-                  <span>{{ personalInfo.email }}</span>
+                  <span class="truncate">{{ personalInfo.email }}</span>
                 </div>
                 <div class="flex items-center space-x-2">
                   <span>📱</span>
-                  <span>{{ personalInfo.phone }}</span>
+                  <span class="truncate">{{ personalInfo.phone }}</span>
                 </div>
                 <div class="flex items-center space-x-2">
                   <span>🌐</span>
-                  <span>{{ personalInfo.website }}</span>
+                  <span class="truncate">{{ personalInfo.website }}</span>
                 </div>
               </div>
             </div>
 
             <!-- Experience -->
-            <div class="mb-8">
-              <h3 class="text-2xl font-bold mb-6 flex items-center" :style="{ color: theme.text }">
+            <div class="mb-6 sm:mb-8">
+              <h3 class="text-xl sm:text-2xl font-bold mb-4 sm:mb-6 flex items-center" :style="{ color: theme.text }">
                 <span class="mr-2">💼</span>
                 Professional Experience
               </h3>
-              <div class="space-y-6">
+              <div class="space-y-4 sm:space-y-6">
                 <div v-for="(job, index) in experience" :key="index" 
-                     class="p-6 rounded-lg border" :style="{ backgroundColor: theme.surface, borderColor: theme.border }">
-                  <div class="flex justify-between items-start mb-4">
-                    <div>
-                      <h4 class="text-xl font-semibold" :style="{ color: theme.text }">{{ job.position }}</h4>
-                      <p class="text-lg" :style="{ color: theme.accent }">{{ job.company }}</p>
-                      <p class="text-sm" :style="{ color: theme.textSecondary }">{{ job.location }}</p>
+                     class="p-4 sm:p-6 rounded-lg border" :style="{ backgroundColor: theme.surface, borderColor: theme.border }">
+                  <div class="flex flex-col sm:flex-row sm:justify-between sm:items-start mb-4 space-y-2 sm:space-y-0">
+                    <div class="flex-1">
+                      <h4 class="text-lg sm:text-xl font-semibold" :style="{ color: theme.text }">{{ job.position }}</h4>
+                      <p class="text-base sm:text-lg" :style="{ color: theme.accent }">{{ job.company }}</p>
+                      <p class="text-xs sm:text-sm" :style="{ color: theme.textSecondary }">{{ job.location }}</p>
                     </div>
-                    <span class="text-sm font-mono px-3 py-1 rounded" :style="{ backgroundColor: theme.accent + '20', color: theme.accent }">
+                    <span class="text-xs sm:text-sm font-mono px-2 sm:px-3 py-1 rounded self-start" :style="{ backgroundColor: theme.accent + '20', color: theme.accent }">
                       {{ job.period }}
                     </span>
                   </div>
                   <ul class="space-y-2">
                     <li v-for="(achievement, idx) in job.achievements" :key="idx" 
-                        class="flex items-start space-x-2 text-sm" :style="{ color: theme.textSecondary }">
-                      <span class="mt-1" :style="{ color: theme.success }">▶</span>
+                        class="flex items-start space-x-2 text-xs sm:text-sm" :style="{ color: theme.textSecondary }">
+                      <span class="mt-1 flex-shrink-0" :style="{ color: theme.success }">▶</span>
                       <span>{{ achievement }}</span>
                     </li>
                   </ul>
@@ -283,37 +282,37 @@ onMounted(() => {
             </div>
 
             <!-- Skills -->
-            <div class="mb-8">
-              <h3 class="text-2xl font-bold mb-6 flex items-center" :style="{ color: theme.text }">
+            <div class="mb-6 sm:mb-8">
+              <h3 class="text-xl sm:text-2xl font-bold mb-4 sm:mb-6 flex items-center" :style="{ color: theme.text }">
                 <span class="mr-2">🛠️</span>
                 Technical Skills
               </h3>
-              <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div class="p-4 rounded-lg border" :style="{ backgroundColor: theme.surface, borderColor: theme.border }">
-                  <h4 class="font-semibold mb-3" :style="{ color: theme.purple }">Languages & Frameworks</h4>
-                  <div class="flex flex-wrap gap-2">
+              <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+                <div class="p-3 sm:p-4 rounded-lg border" :style="{ backgroundColor: theme.surface, borderColor: theme.border }">
+                  <h4 class="font-semibold mb-3 text-sm sm:text-base" :style="{ color: theme.purple }">Languages & Frameworks</h4>
+                  <div class="flex flex-wrap gap-1 sm:gap-2">
                     <span v-for="skill in skills.languages" :key="skill"
-                          class="px-3 py-1 text-xs rounded-full font-mono" 
+                          class="px-2 sm:px-3 py-1 text-xs rounded-full font-mono" 
                           :style="{ backgroundColor: theme.purple + '20', color: theme.purple }">
                       {{ skill }}
                     </span>
                   </div>
                 </div>
-                <div class="p-4 rounded-lg border" :style="{ backgroundColor: theme.surface, borderColor: theme.border }">
-                  <h4 class="font-semibold mb-3" :style="{ color: theme.orange }">Tools & Technologies</h4>
-                  <div class="flex flex-wrap gap-2">
+                <div class="p-3 sm:p-4 rounded-lg border" :style="{ backgroundColor: theme.surface, borderColor: theme.border }">
+                  <h4 class="font-semibold mb-3 text-sm sm:text-base" :style="{ color: theme.orange }">Tools & Technologies</h4>
+                  <div class="flex flex-wrap gap-1 sm:gap-2">
                     <span v-for="tool in skills.tools" :key="tool"
-                          class="px-3 py-1 text-xs rounded-full font-mono" 
+                          class="px-2 sm:px-3 py-1 text-xs rounded-full font-mono" 
                           :style="{ backgroundColor: theme.orange + '20', color: theme.orange }">
                       {{ tool }}
                     </span>
                   </div>
                 </div>
-                <div class="p-4 rounded-lg border" :style="{ backgroundColor: theme.surface, borderColor: theme.border }">
-                  <h4 class="font-semibold mb-3" :style="{ color: theme.green }">Methodologies</h4>
-                  <div class="flex flex-wrap gap-2">
+                <div class="p-3 sm:p-4 rounded-lg border sm:col-span-2 lg:col-span-1" :style="{ backgroundColor: theme.surface, borderColor: theme.border }">
+                  <h4 class="font-semibold mb-3 text-sm sm:text-base" :style="{ color: theme.green }">Methodologies</h4>
+                  <div class="flex flex-wrap gap-1 sm:gap-2">
                     <span v-for="method in skills.methodologies" :key="method"
-                          class="px-3 py-1 text-xs rounded-full font-mono" 
+                          class="px-2 sm:px-3 py-1 text-xs rounded-full font-mono" 
                           :style="{ backgroundColor: theme.green + '20', color: theme.green }">
                       {{ method }}
                     </span>
@@ -323,30 +322,30 @@ onMounted(() => {
             </div>
 
             <!-- Education -->
-            <div class="mb-8">
-              <h3 class="text-2xl font-bold mb-6 flex items-center" :style="{ color: theme.text }">
+            <div class="mb-6 sm:mb-8">
+              <h3 class="text-xl sm:text-2xl font-bold mb-4 sm:mb-6 flex items-center" :style="{ color: theme.text }">
                 <span class="mr-2">🎓</span>
                 Education
               </h3>
-              <div class="p-6 rounded-lg border" :style="{ backgroundColor: theme.surface, borderColor: theme.border }">
-                <h4 class="text-xl font-semibold mb-2" :style="{ color: theme.text }">{{ education.degree }}</h4>
-                <p class="text-lg mb-2" :style="{ color: theme.accent }">{{ education.school }}</p>
-                <p class="text-sm" :style="{ color: theme.textSecondary }">{{ education.period }}</p>
+              <div class="p-4 sm:p-6 rounded-lg border" :style="{ backgroundColor: theme.surface, borderColor: theme.border }">
+                <h4 class="text-lg sm:text-xl font-semibold mb-2" :style="{ color: theme.text }">{{ education.degree }}</h4>
+                <p class="text-base sm:text-lg mb-2" :style="{ color: theme.accent }">{{ education.school }}</p>
+                <p class="text-xs sm:text-sm" :style="{ color: theme.textSecondary }">{{ education.period }}</p>
               </div>
             </div>
 
             <!-- Contact CTA -->
-            <div class="text-center p-8 rounded-lg border" :style="{ backgroundColor: theme.surface, borderColor: theme.border }">
-              <h3 class="text-2xl font-bold mb-4" :style="{ color: theme.text }">Ready to build something amazing?</h3>
-              <p class="mb-6" :style="{ color: theme.textSecondary }">Let's connect and discuss how I can help bring your ideas to life.</p>
-              <div class="flex justify-center space-x-4">
+            <div class="text-center p-6 sm:p-8 rounded-lg border" :style="{ backgroundColor: theme.surface, borderColor: theme.border }">
+              <h3 class="text-xl sm:text-2xl font-bold mb-4" :style="{ color: theme.text }">Ready to build something amazing?</h3>
+              <p class="mb-6 text-sm sm:text-base" :style="{ color: theme.textSecondary }">Let's connect and discuss how I can help bring your ideas to life.</p>
+              <div class="flex flex-col sm:flex-row justify-center space-y-3 sm:space-y-0 sm:space-x-4">
                 <a :href="personalInfo.linkedin" target="_blank" 
-                   class="px-6 py-3 rounded-lg font-semibold transition-all duration-300 hover:scale-105"
+                   class="px-4 sm:px-6 py-3 rounded-lg font-semibold transition-all duration-300 hover:scale-105 text-center"
                    :style="{ backgroundColor: theme.accent, color: theme.background }">
                   Connect on LinkedIn
                 </a>
                 <a :href="`mailto:${personalInfo.email}`" 
-                   class="px-6 py-3 rounded-lg font-semibold border transition-all duration-300 hover:scale-105"
+                   class="px-4 sm:px-6 py-3 rounded-lg font-semibold border transition-all duration-300 hover:scale-105 text-center"
                    :style="{ borderColor: theme.accent, color: theme.accent }">
                   Send Email
                 </a>
@@ -369,8 +368,8 @@ onMounted(() => {
 
 /* Custom scrollbar for IDE feel */
 ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  width: 6px;
+  height: 6px;
 }
 
 ::-webkit-scrollbar-track {
@@ -418,14 +417,36 @@ onMounted(() => {
   outline-offset: 2px;
 }
 
-/* Responsive design */
-@media (max-width: 768px) {
-  .sidebar {
+/* Mobile-first responsive design */
+@media (max-width: 640px) {
+  /* Hide some elements on very small screens */
+  .hidden-mobile {
     display: none;
   }
   
-  .main-content {
-    width: 100%;
+  /* Adjust font sizes for mobile */
+  .text-responsive {
+    font-size: 0.875rem;
+  }
+  
+  /* Better touch targets */
+  .touch-target {
+    min-height: 44px;
+    min-width: 44px;
+  }
+}
+
+/* Tablet and up */
+@media (min-width: 641px) and (max-width: 1024px) {
+  .tablet-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Desktop */
+@media (min-width: 1025px) {
+  .desktop-grid {
+    grid-template-columns: repeat(3, 1fr);
   }
 }
 
@@ -457,5 +478,56 @@ onMounted(() => {
 * {
   transition: all 0.2s ease-in-out;
 }
-</style>
 
+/* Mobile-specific improvements */
+@media (max-width: 768px) {
+  /* Better spacing on mobile */
+  .mobile-padding {
+    padding: 1rem;
+  }
+  
+  /* Stack elements vertically on mobile */
+  .mobile-stack {
+    flex-direction: column;
+  }
+  
+  /* Full width on mobile */
+  .mobile-full {
+    width: 100%;
+  }
+  
+  /* Smaller text on mobile */
+  .mobile-text-sm {
+    font-size: 0.875rem;
+  }
+  
+  /* Better button sizing on mobile */
+  .mobile-button {
+    padding: 0.75rem 1rem;
+    font-size: 0.875rem;
+  }
+}
+
+/* Ensure proper text wrapping */
+.text-wrap {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+/* Better line height for readability */
+.readable-text {
+  line-height: 1.6;
+}
+
+/* Responsive images */
+.responsive-img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Better focus states for accessibility */
+.focus-visible:focus-visible {
+  outline: 2px solid #58a6ff;
+  outline-offset: 2px;
+}
+</style>

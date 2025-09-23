@@ -34,7 +34,7 @@ const experience = [
   {
     company: 'YNS Philippines',
     position: 'Software Engineer II',
-    period: 'Jul 2019 - Aug 2025',
+    period: 'Jul 2019 - Sept 15, 2025',
     location: 'Makati City, Philippines',
     achievements: [
       'Led development of multiple enterprise-level applications including banking software, job portals, online booking, and mobile apps',
@@ -190,6 +190,11 @@ onMounted(() => {
                 <span class="text-xs">📄</span>
                 <span class="text-xs sm:text-sm font-mono">contact.sh</span>
               </div>
+              <div class="flex items-center space-x-2 py-1 px-2 rounded cursor-pointer hover:bg-opacity-20" 
+                   :style="{ backgroundColor: theme.accent + '20' }">
+                <span class="text-xs">📄</span>
+                <span class="text-xs sm:text-sm font-mono">resume.pdf</span>
+              </div>
             </div>
           </div>
         </div>
@@ -219,8 +224,11 @@ onMounted(() => {
           <div class="px-2 sm:px-4 py-2 border-r cursor-pointer flex-shrink-0" :style="{ borderColor: theme.border }">
             <span class="text-xs sm:text-sm font-mono" :style="{ color: theme.textSecondary }">education.md</span>
           </div>
-          <div class="px-2 sm:px-4 py-2 cursor-pointer flex-shrink-0" :style="{ borderColor: theme.border }">
+          <div class="px-2 sm:px-4 py-2 border-r cursor-pointer flex-shrink-0" :style="{ borderColor: theme.border }">
             <span class="text-xs sm:text-sm font-mono" :style="{ color: theme.textSecondary }">contact.sh</span>
+          </div>
+          <div class="px-2 sm:px-4 py-2 cursor-pointer flex-shrink-0" :style="{ borderColor: theme.border }">
+            <span class="text-xs sm:text-sm font-mono" :style="{ color: theme.textSecondary }">resume.pdf</span>
           </div>
         </div>
 
@@ -348,6 +356,11 @@ onMounted(() => {
                    class="px-4 sm:px-6 py-3 rounded-lg font-semibold border transition-all duration-300 hover:scale-105 text-center"
                    :style="{ borderColor: theme.accent, color: theme.accent }">
                   Send Email
+                </a>
+                <a href="/resumes/JarrelMangahasResume_latest.pdf" download="JarrelMangahas_Resume.pdf"
+                   class="px-4 sm:px-6 py-3 rounded-lg font-semibold border transition-all duration-300 hover:scale-105 text-center"
+                   :style="{ borderColor: theme.success, color: theme.success }">
+                  📄 Download Resume
                 </a>
               </div>
             </div>

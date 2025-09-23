@@ -24,7 +24,7 @@ const personalInfo = {
   title: 'Software Engineer II',
   location: 'San Jose City, Nueva Ecija',
   email: 'jarrelmangahas12@gmail.com',
-  phone: '+6392109001800',
+  phone: '+639219018050',
   linkedin: 'https://www.linkedin.com/in/jarrel-mangahas-294174171/',
   website: 'jrlmnghs.online'
 };
